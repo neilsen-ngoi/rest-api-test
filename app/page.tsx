@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 import UserItem from "../components/userItem";
 import { fetchUsers } from "@/services/api";
 import { User, PaginatedResponse } from "@/types";
-
-// interface HomePageProps {
-//   initialData: PaginatedResponse<User>;
-// }
+import { useRouter } from "next/navigation";
 
 const HomePage: React.FC = () => {
+  const router = useRouter();
   const [data, setData] = useState<PaginatedResponse<User> | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +18,8 @@ const HomePage: React.FC = () => {
         setData(initialData);
       } catch (error) {
         console.error("Error fetching initial data:", ErrorEvent);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -30,8 +31,18 @@ const HomePage: React.FC = () => {
       setData(newData);
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
   };
+
+  const handleClick = (user: User) => {
+    router.push(`/user/${user.id}`);
+  };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -40,7 +51,9 @@ const HomePage: React.FC = () => {
         <>
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {data?.data.map((user) => (
-              <UserItem key={user.id} user={user} />
+              <div key={user.id} onClick={() => handleClick(user)}>
+                <UserItem user={user} />
+              </div>
             ))}
           </div>
           <div className="flex justify-between mt-4">
@@ -61,7 +74,7 @@ const HomePage: React.FC = () => {
           </div>
         </>
       ) : (
-        <p>Loading...</p>
+        <p>No users found.</p>
       )}
     </div>
   );

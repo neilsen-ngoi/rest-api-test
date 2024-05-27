@@ -1,12 +1,8 @@
 import { useRouter } from "next/router";
 import UserDetails from "@/components/userDetails";
 import { fetchUser } from "@/services/api";
-import { PaginatedResponse, User } from "@/types";
+import { User } from "@/types";
 import { useEffect, useState } from "react";
-
-// interface UserDetailsPageProps {
-//   id: string | string[] | undefined;
-// }
 
 const UserDetailsPage: React.FC = () => {
   const router = useRouter();
@@ -22,7 +18,7 @@ const UserDetailsPage: React.FC = () => {
           const fetchedUser = await fetchUser(Number(id));
           setUser(fetchedUser);
         } catch (error) {
-          setError("Failed to fetch user data");
+          console.error("Failed to fetch user data");
         } finally {
           setLoading(false);
         }
@@ -45,10 +41,8 @@ const UserDetailsPage: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <button onClick={() => router.back()} className="mb-4 text-blue-500">
-        Back
-      </button>
-      {user && <UserDetails user={user} />}
+      <h1 className="text-2xl font-bold mb-4">User Details</h1>
+      <UserDetails user={user} />
     </div>
   );
 };
