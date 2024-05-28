@@ -1,4 +1,5 @@
-import { User } from "@/types";
+"use client";
+import { PaginatedResponse, User } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 
@@ -7,13 +8,14 @@ interface UserDetailsProps {
 }
 
 const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
+  console.log(user);
   return (
     <div className="border p-4 rounded-lg shadow-md">
       <Image
         src={user.avatar}
         alt={`${user.first_name} ${user.last_name}`}
-        width={32}
-        height={32}
+        width={50}
+        height={50}
         className="rounded-full mx-auto"
       />
       <h2 className="text-2xl font-bold text-center mt-4">

@@ -21,7 +21,7 @@ const UserItem: React.FC<UserItemProps> = ({ user }) => {
           {user.first_name} {user.last_name}
         </h2>
         <p>{user.email}</p>
-        <Link href={`/user/${user.id}`}>
+        <Link href={`/users/${user.id}`}>
           <p className="text-green-300">View user</p>
         </Link>
       </div>
