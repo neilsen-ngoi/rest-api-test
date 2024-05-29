@@ -14,8 +14,8 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
       <Image
         src={user.avatar}
         alt={`${user.first_name} ${user.last_name}`}
-        width={50}
-        height={50}
+        width={150}
+        height={150}
         className="rounded-full mx-auto"
       />
       <h2 className="text-2xl font-bold text-center mt-4">

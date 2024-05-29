@@ -13,8 +13,8 @@ const UserItem: React.FC<UserItemProps> = ({ user }) => {
       <Image
         src={user.avatar}
         alt={`${user.first_name} ${user.last_name}`}
-        height={16}
-        width={16}
+        height={50}
+        width={50}
         className="rounded-full"
       />
       <div>

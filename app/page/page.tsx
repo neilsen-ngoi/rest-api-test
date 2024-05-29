@@ -1,13 +1,16 @@
 "use client";
 
 // Import necessary modules and components
-import { useEffect, useState } from "react";
-import UserItem from "../../components/userItem";
 import { PaginatedResponse, User } from "@/types/types";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import UserItem from "../../components/userItem";
 
-const HomePage: React.FC = () => {
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+
+const HomePage = () => {
   // Get the router instance
   const router = useRouter();
 
@@ -35,7 +38,7 @@ const HomePage: React.FC = () => {
         // Update the allUsers state with the fetched data
         setAllUsers(initialData.data);
       } catch (error) {
-        console.error("Error fetching initial data:", ErrorEvent);
+        toast("Error fetching initial data:");
       } finally {
         // Set loading to false after data is fetched or an error occurs
         setLoading(false);
@@ -81,21 +84,21 @@ const HomePage: React.FC = () => {
           </div>
           <div className="flex justify-between mt-4">
             {/* Previous button */}
-            <button
+            <Button
               onClick={() => handlePageChange(allUsers.page - 1)}
               disabled={allUsers.page === 1}
               className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
             >
               Previous
-            </button>
+            </Button>
             {/* Next button */}
-            <button
+            <Button
               onClick={() => handlePageChange(allUsers.page + 1)}
               disabled={allUsers.page === allUsers.total_pages}
               className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
             >
               Next
-            </button>
+            </Button>
           </div>
         </>
       ) : (
@@ -106,5 +109,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-// Export the HomePage component as the default export
 export default HomePage;
