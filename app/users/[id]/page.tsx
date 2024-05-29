@@ -1,5 +1,5 @@
 import UserDetails from "@/components/userDetails";
-import { PaginatedResponse, User } from "@/types/types";
+import { User } from "@/types/types";
 import axios from "axios";
 
 const UserDetailsPage = async ({ params }: { params: { id: string } }) => {
