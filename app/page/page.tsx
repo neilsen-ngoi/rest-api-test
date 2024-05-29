@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Make a GET request to fetch user data for the current page
+        //  GET request to fetch user data for the current page
         const initialData: { data: PaginatedResponse<User> } = await axios.get(
           `https://reqres.in/api/users?page=${Number(pageNumber) || 1}`
         );

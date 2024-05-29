@@ -24,7 +24,7 @@ Your browser should now display as per the Demo.JPG inside public folder.
 
 Tech-stack:
 
-    Nextjs, nextjs server functions (experimental)
+    Nextjs, 
     Typescript for safe type check
-    Axios / fetch(Nextjs) from api calls
+    Axios / fetch(Nextjs) for api calls
     Shadcn for looks
